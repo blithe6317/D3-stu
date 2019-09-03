@@ -1,0 +1,35 @@
+.mult {
+  margin-top: 10px;
+  &::after {
+    content: " ";
+    clear: both;
+    display: block;
+    zoom: 1;
+  }
+  div {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+  }
+  .red-box {
+    background-color: red;
+  }
+  .blue-box {
+    background-color: blue;
+  }
+}
+
+.table {
+  td,
+  th {
+    padding: 5px 10px;
+  }
+  .table-header {
+    background-color: #999;
+  }
+  .table-row-odd {
+    background-color: #ddd;
+  }
+}
