@@ -287,7 +287,6 @@ const Part = () => {
 
     function load() {
       d3.json("/part3", function(err, res) {
-        console.log("res:", res);
         render(res.data);
       });
     }
@@ -305,18 +304,27 @@ const Part = () => {
         .append("div")
         .attr("class", "h-bar")
         .style("width", function(d) {
-          return d.expense * 3 + "px";
+          return d.number * 2 + "px";
         })
         .append("span")
         .text(function(d) {
           return d.category;
         });
     }
+    function generateDatum(callback) {
+      setInterval(function() {
+        callback(null, { number: Math.random() * 500 });
+      }, 500);
+    }
     function load() {
-      // const q = d3.queu
-      // d3.json("/part3").then(res => {
-      //   render(res.data);
-      // });
+      const q = d3.queue();
+
+      for (var i = 0; i < 10; i++) {
+        q.defer(generateDatum);
+      }
+      q.awaitAll(function(err, data) {
+        render(data);
+      });
     }
     load();
   };
