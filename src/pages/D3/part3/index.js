@@ -143,11 +143,188 @@ const Part = () => {
     box.select("#desc span").text(array.sort(d3.descending));
     box.select("#bisect span").text(d3.bisect(array.sort(d3.ascending), 6));
   };
+
+  var records = [
+    { quantity: 2, total: 190, tip: 100, type: "tab" },
+    { quantity: 2, total: 190, tip: 100, type: "tab" },
+    { quantity: 1, total: 300, tip: 200, type: "visa" },
+    { quantity: 2, total: 90, tip: 0, type: "tab" },
+    { quantity: 2, total: 90, tip: 0, type: "tab" },
+    { quantity: 2, total: 90, tip: 0, type: "tab" },
+    { quantity: 1, total: 100, tip: 0, type: "cash" },
+    { quantity: 2, total: 90, tip: 0, type: "tab" },
+    { quantity: 2, total: 90, tip: 0, type: "tab" },
+    { quantity: 2, total: 90, tip: 0, type: "tab" },
+    { quantity: 2, total: 200, tip: 0, type: "cash" },
+    { quantity: 1, total: 200, tip: 100, type: "visa" }
+  ];
+  const runArrayOpe2 = () => {
+    var nest = d3
+      .nest()
+      .key(function(d) {
+        return d.type;
+      })
+      .key(function(d) {
+        return d.tip;
+      })
+      .entries(records);
+    var box = d3.select("#array-operation2");
+    box.select("#nest").html(printNest(nest, ""));
+    function printNest(nest, out) {
+      console.log("nest:", nest);
+      return JSON.stringify(nest);
+    }
+  };
+
+  var arrayFilter = [
+    { expense: 10, category: "Retail" },
+    { expense: 15, category: "Gas" },
+    { expense: 30, category: "Retail" },
+    { expense: 50, category: "Dining" },
+    { expense: 80, category: "Gas" },
+    { expense: 65, category: "Retail" },
+    { expense: 55, category: "Gas" },
+    { expense: 30, category: "Dining" },
+    { expense: 20, category: "Retail" },
+    { expense: 10, category: "Dining" },
+    { expense: 8, category: "Gas" }
+  ];
+  const runFilter = category => {
+    function render(data, category) {
+      var bars = d3
+        .select("#filter #box")
+        .selectAll("div.h-bar")
+        .data(data);
+      bars
+        .enter()
+        .append("div")
+        .attr("class", "h-bar")
+        .style("width", function(d) {
+          return d.expense * 3 + "px";
+        })
+        .append("span")
+        .text(function(d) {
+          return d.category;
+        });
+
+      d3.select("#filter #box")
+        .selectAll("div.h-bar")
+        .attr("class", "h-bar");
+
+      bars
+        .filter(function(d, i) {
+          return d.category === category;
+        })
+        .classed("selected", true);
+    }
+    render(arrayFilter);
+
+    function select(category) {
+      render(arrayFilter, category);
+    }
+    if (category) {
+      select(category);
+    }
+  };
+
+  const runSort = comparator => {
+    function render(data, comparator) {
+      var bars = d3
+        .select("#sort .box")
+        .selectAll("div.h-bar")
+        .data(data);
+      bars
+        .enter()
+        .append("div")
+        .attr("class", "h-bar")
+        .append("span");
+      d3.select("#sort .box")
+        .selectAll("div.h-bar")
+        .style("width", function(d, i) {
+          return d.expense * 3 + "px";
+        })
+        .select("span")
+        .text(function(d) {
+          return d.category;
+        });
+      if (comparator) {
+        bars.sort(comparator);
+      }
+    }
+    if (comparator) {
+      render(arrayFilter, comparator);
+    } else {
+      render(arrayFilter);
+    }
+  };
+
+  const compareByExpence = function(a, b) {
+    return a.expense - b.expense;
+  };
+
+  const compareByCategory = function(a, b) {
+    return a.category - b.category;
+  };
+
+  const loadJson = () => {
+    function render(data) {
+      var bars = d3
+        .select("#chart")
+        .selectAll("div.h-bar")
+        .data(data);
+      bars
+        .enter()
+        .append("div")
+        .attr("class", "h-bar")
+        .style("width", function(d) {
+          return d.expense * 3 + "px";
+        })
+        .append("span")
+        .text(function(d) {
+          return d.category;
+        });
+    }
+
+    function load() {
+      d3.json("/part3", function(err, res) {
+        console.log("res:", res);
+        render(res.data);
+      });
+    }
+    load();
+  };
+
+  const loadJson2 = () => {
+    function render(data) {
+      var bars = d3
+        .select("#chart2")
+        .selectAll("div.h-bar")
+        .data(data);
+      bars
+        .enter()
+        .append("div")
+        .attr("class", "h-bar")
+        .style("width", function(d) {
+          return d.expense * 3 + "px";
+        })
+        .append("span")
+        .text(function(d) {
+          return d.category;
+        });
+    }
+    function load() {
+      // const q = d3.queu
+      // d3.json("/part3").then(res => {
+      //   render(res.data);
+      // });
+    }
+    load();
+  };
   return (
     <>
       <h1>第三章 与数据同行</h1>
       <Row gutter={24}>
-        <Col span={6}>
+        <Col span={4}>
           <h2>绑定数据</h2>
           <Button type="primary" onClick={runBindData}>
             运行示列
@@ -208,6 +385,103 @@ const Part = () => {
               二等分：<span></span>
             </p>
           </div>
+          <br></br>
+          <h2>数组操作第二部分</h2>
+          <p>数组：</p>
+          <p>{JSON.stringify(records)}</p>
+          <Button type="primary" onClick={runArrayOpe2}>
+            运行示列
+          </Button>
+          <div id="array-operation2">
+            <p id="nest"></p>
+          </div>
+        </Col>
+        <Col span={6}>
+          <h2>过滤</h2>
+          <Button type="primary" onClick={runFilter}>
+            运行示列
+          </Button>
+          <br></br>
+          <div id="filter" className="filter-box">
+            <div id="box"></div>
+
+            <br></br>
+            <div className="button-group">
+              <Button
+                type="primary"
+                onClick={() => {
+                  runFilter("Retail");
+                }}
+              >
+                Retail
+              </Button>
+              <Button
+                type="primary"
+                onClick={() => {
+                  runFilter("Gas");
+                }}
+              >
+                Gas
+              </Button>
+              <Button
+                type="primary"
+                onClick={() => {
+                  runFilter("Dining");
+                }}
+              >
+                Dining
+              </Button>
+              <Button type="primary" onClick={runFilter}>
+                Clear
+              </Button>
+            </div>
+          </div>
+        </Col>
+        <Col span={6}>
+          <h2>排序</h2>
+          <Button
+            type="primary"
+            onClick={() => {
+              runSort();
+            }}
+          >
+            运行示列
+          </Button>
+          <br></br>
+          <div id="sort" className="filter-box">
+            <div className="box"></div>
+            <div className="button-group">
+              <Button
+                type="primary"
+                onClick={() => {
+                  runSort(compareByCategory);
+                }}
+              >
+                Category
+              </Button>
+              <Button
+                type="primary"
+                onClick={() => {
+                  runSort(compareByExpence);
+                }}
+              >
+                Expence
+              </Button>
+            </div>
+          </div>
+        </Col>
+        <Col span={6}>
+          <h2>服务器加载数据</h2>
+          <Button type="primary" onClick={loadJson}>
+            运行示列
+          </Button>
+          <div id="chart" className="filter-box"></div>
+          <br></br>
+          <h2>服务器队列加载</h2>
+          <Button type="primary" onClick={loadJson2}>
+            运行示列
+          </Button>
+          <div id="chart2" className="filter-box"></div>
         </Col>
       </Row>
     </>

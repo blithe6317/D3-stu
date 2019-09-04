@@ -5,6 +5,9 @@
   color: white;
   text-align: end;
   padding-right: 5px;
+  &.selected {
+    background-color: red;
+  }
 }
 
 .v-bar {
@@ -12,4 +15,17 @@
   margin-left: 8px;
   background-color: seagreen;
   float: left;
+}
+
+.filter-box {
+  border: 1px solid #ddd;
+  padding: 10px;
+  .button-group {
+    button {
+      margin-left: 10px;
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
 }
