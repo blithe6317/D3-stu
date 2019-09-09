@@ -6,6 +6,7 @@ const SingleElementAnimation = () => {
     var duration = 5000;
     var selector = d3.select("#single-ele-animation");
     selector
+      .append("div")
       .classed("box", true)
       .style("background-color", "#e9967a")
       .transition()

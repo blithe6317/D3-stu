@@ -4,7 +4,7 @@ import { Tabs } from "antd";
 import SingleElementAnimation from "./SingleElementAnimation";
 import MultiElementAnimation from "./MultiElementAnimation";
 import RetardationFunction from "./RetardationFunction";
-import IntermediateFrame from "./IntermediateFrame";
+import InbeTween from "./InbeTween";
 import CascadeTransition from "./CascadeTransition";
 import SelectiveTransition from "./SelectiveTransition";
 import TransitionEvent from "./TransitionEvent";
@@ -14,7 +14,7 @@ const { TabPane } = Tabs;
 
 const Part = () => {
   return (
-    <Tabs defaultActiveKey="1">
+    <Tabs defaultActiveKey="7">
       <TabPane tab="单元素动画" key="1">
         <SingleElementAnimation></SingleElementAnimation>
       </TabPane>
@@ -25,7 +25,7 @@ const Part = () => {
         <RetardationFunction></RetardationFunction>
       </TabPane>
       <TabPane tab="中间帧计算" key="4">
-        <IntermediateFrame></IntermediateFrame>
+        <InbeTween></InbeTween>
       </TabPane>
       <TabPane tab="级联过渡" key="5">
         <CascadeTransition></CascadeTransition>
