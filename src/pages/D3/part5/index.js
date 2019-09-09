@@ -2,7 +2,7 @@ import React from "react";
 import { Tabs } from "antd";
 import * as d3 from "d3";
 
-import AxisBasic from "AxisBasic";
+import AxisBasic from "./AxisBasic";
 
 import styles from "./style.scss";
 
