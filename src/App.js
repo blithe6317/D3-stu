@@ -10,6 +10,12 @@ import Part4 from "./pages/D3/part4";
 import Part5 from "./pages/D3/part5";
 import Part6 from "./pages/D3/part6";
 import Part7 from "./pages/D3/part7";
+import Part8 from "./pages/D3/part8";
+import Part9 from "./pages/D3/part9";
+import Part10 from "./pages/D3/part10";
+import Part11 from "./pages/D3/part11";
+import Part12 from "./pages/D3/part12";
+import Part13 from "./pages/D3/part13";
 import { Menu, Icon, Layout } from "antd";
 import "./App.css";
 
@@ -81,6 +87,36 @@ const App = props => {
                 <span>第七章</span>
               </Link>
             </Menu.Item>
+            <Menu.Item key="/d3-test/part8">
+              <Link to="/d3-test/part8">
+                <span>第八章</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="/d3-test/part9">
+              <Link to="/d3-test/part9">
+                <span>第九章</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="/d3-test/part10">
+              <Link to="/d3-test/part10">
+                <span>第十章</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="/d3-test/part11">
+              <Link to="/d3-test/part11">
+                <span>第十一章</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="/d3-test/part12">
+              <Link to="/d3-test/part12">
+                <span>第十二章</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="/d3-test/part13">
+              <Link to="/d3-test/part13">
+                <span>第十三章</span>
+              </Link>
+            </Menu.Item>
           </Menu.SubMenu>
           <Menu.SubMenu key="rx" title={<span>RX</span>} />
         </Menu>
@@ -97,6 +133,12 @@ const App = props => {
           <Route path="/d3-test/part5" component={Part5} />
           <Route path="/d3-test/part6" component={Part6} />
           <Route path="/d3-test/part7" component={Part7} />
+          <Route path="/d3-test/part8" component={Part8} />
+          <Route path="/d3-test/part9" component={Part9} />
+          <Route path="/d3-test/part10" component={Part10} />
+          <Route path="/d3-test/part11" component={Part11} />
+          <Route path="/d3-test/part12" component={Part12} />
+          <Route path="/d3-test/part13" component={Part13} />
           <Redirect to="/bar-chart" />
         </Switch>
       </Content>
