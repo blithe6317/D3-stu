@@ -2,16 +2,17 @@ import React from "react";
 import { Tabs } from "antd";
 
 import LineChart from "./LineChart";
+import AreaChart from "./AreaChart";
 const { TabPane } = Tabs;
 
 const Part = () => {
   return (
-    <Tabs defaultActiveKey="1">
+    <Tabs defaultActiveKey="2">
       <TabPane tab="创建线图" key="1">
         <LineChart></LineChart>
       </TabPane>
       <TabPane tab="创建面积图" key="2">
-        创建面积图
+        <AreaChart></AreaChart>
       </TabPane>
       <TabPane tab="创建散点图" key="3">
         创建散点图

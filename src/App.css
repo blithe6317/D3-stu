@@ -175,7 +175,9 @@ th {
   font-weight: bold;
 }
 
-.axis .grid-line {
+.axis .grid-line,
+.x-axis .grid-line,
+.y-axis .grid-line {
   stroke: black;
   shape-rendering: crispEdges;
   stroke-opacity: 0.2;
