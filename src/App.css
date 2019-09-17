@@ -205,37 +205,43 @@ th {
   font-weight: bold;
 }
 
-._0 {
+._0,
+.dot_0 {
   stroke: none;
   fill: darkred;
   fill-opacity: 0.7;
 }
 
-._1 {
+._1,
+.dot_1 {
   stroke: none;
   fill: red;
   fill-opacity: 0.7;
 }
 
-._2 {
+._2,
+.dot_2 {
   stroke: none;
   fill: blue;
   fill-opacity: 0.7;
 }
 
-._3 {
+._3,
+.dot_3 {
   stroke: none;
   fill: green;
   fill-opacity: 0.7;
 }
 
-._4 {
+._4,
+.dot_4 {
   stroke: none;
   fill: yellow;
   fill-opacity: 0.7;
 }
 
-._5 {
+._5,
+.dot_5 {
   stroke: none;
   fill: blueviolet;
   fill-opacity: 0.7;
