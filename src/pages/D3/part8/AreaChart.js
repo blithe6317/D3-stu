@@ -140,7 +140,7 @@ const AreaChart = () => {
       svgBody
         .selectAll("circle.dot_" + i)
         .data(dots)
-        .enter()
+        .enter()  
         .append("circle")
         .transition()
         .attr("class", "dot dot_" + i)
