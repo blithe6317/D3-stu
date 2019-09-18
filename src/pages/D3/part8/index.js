@@ -4,11 +4,12 @@ import { Tabs } from "antd";
 import LineChart from "./LineChart";
 import AreaChart from "./AreaChart";
 import NewAreaChart from "./NewAreaChart";
+import ScatterplotChart from "./ScatterplotChart";
 const { TabPane } = Tabs;
 
 const Part = () => {
   return (
-    <Tabs defaultActiveKey="2">
+    <Tabs defaultActiveKey="3">
       <TabPane tab="创建线图" key="1">
         <LineChart></LineChart>
       </TabPane>
@@ -16,7 +17,7 @@ const Part = () => {
         <NewAreaChart></NewAreaChart>
       </TabPane>
       <TabPane tab="创建散点图" key="3">
-        创建散点图
+        <ScatterplotChart></ScatterplotChart>
       </TabPane>
       <TabPane tab="创建气泡图" key="4">
         创建气泡图

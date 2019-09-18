@@ -106,11 +106,38 @@ const areaChart = () => {
       .attr("transform", "translate(0," + (_height - margin) + ")")
       .call(xAxis);
 
+    g.select("g.x-axis")
+      .selectAll("g.tick")
+      .each(function(i) {
+        if (i !== 0) {
+          d3.select(this)
+            .append("line")
+            .attr("class", "grid-line")
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", 0)
+            .attr("y2", -(_height - 2 * margin));
+        }
+      });
+
     g.append("g")
       .attr("class", "y-axis")
       .attr("transform", "translate(" + margin + ",0)")
       .call(yAxis);
 
+    g.select("g.y-axis")
+      .selectAll("g.tick")
+      .each(function(i) {
+        if (i !== 0) {
+          d3.select(this)
+            .append("line")
+            .attr("class", "grid-line")
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", _width - 2 * margin)
+            .attr("y2", 0);
+        }
+      });
     return _chart;
   };
 
