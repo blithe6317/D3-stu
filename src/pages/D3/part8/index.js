@@ -6,11 +6,12 @@ import AreaChart from "./AreaChart";
 import NewAreaChart from "./NewAreaChart";
 import ScatterplotChart from "./ScatterplotChart";
 import BubbleChart from "./BubbleChart";
+import BarChart from "./BarChart";
 const { TabPane } = Tabs;
 
 const Part = () => {
   return (
-    <Tabs defaultActiveKey="4">
+    <Tabs defaultActiveKey="5">
       <TabPane tab="创建线图" key="1">
         <LineChart></LineChart>
       </TabPane>
@@ -24,7 +25,7 @@ const Part = () => {
         <BubbleChart></BubbleChart>
       </TabPane>
       <TabPane tab="创建条形图" key="5">
-        创建条形图
+        <BarChart></BarChart>
       </TabPane>
     </Tabs>
   );
