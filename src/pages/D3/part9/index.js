@@ -1,13 +1,14 @@
 import React from "react";
 import { Tabs } from "antd";
 
+import PieChart from "./PieChart";
 const { TabPane } = Tabs;
 
 const Part = () => {
   return (
     <Tabs defaultActiveKey="1">
       <TabPane tab="创建饼图" key="1">
-        创建饼图
+        <PieChart></PieChart>
       </TabPane>
       <TabPane tab="创建堆叠面积图" key="2">
         创建堆叠面积图
