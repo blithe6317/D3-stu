@@ -20,10 +20,14 @@ const stackArea = () => {
     }
 
     if (!_svg) {
-      _svg = d3.select(_selector).append("svg");
-    }
+      _svg = d3
+        .select(_selector)
+        .append("svg")
+        .attr("width", _width)
+        .attr("height", _height);
 
-    _svg.attr("width", _width).attr("height", _height);
+      _chart.renderAxes();
+    }
 
     return _chart;
   };
@@ -42,6 +46,50 @@ const stackArea = () => {
     }
     _height = h;
     return _chart;
+  };
+
+  _chart.renderAxes = () => {
+    const g = _svg.append("g").attr("class", "axes");
+
+    _xScale = d3
+      .scaleLinear()
+      .domain([0, 10])
+      .range([xStart(), xEnd()]);
+    _yScale = d3
+      .scaleLinear()
+      .domain([0, 10])
+      .range([yEnd(), yStart()]);
+
+    const xAxis = d3.axisBottom().scale(_xScale);
+    const yAxis = d3.axisLeft().scale(_yScale);
+
+    g.append("g")
+      .attr("class", "x-axis")
+      .attr("transform", `translate(0,${xEnd()})`)
+      .call(xAxis);
+
+    g.append("g")
+      .attr("class", "y-axis")
+      .attr("transform", `translate(${xStart()},0)`)
+      .call(yAxis);
+
+    return _chart;
+  };
+
+  const xStart = () => {
+    return _margin.left;
+  };
+
+  const xEnd = () => {
+    return _height - _margin.left;
+  };
+
+  const yStart = () => {
+    return _margin.top;
+  };
+
+  const yEnd = () => {
+    return _height - _margin.bottom;
   };
 
   return _chart;
