@@ -95,6 +95,7 @@ const stackArea = () => {
         .attr("class", "body")
         .attr("transform", `translate(${xStart()},${yEnd()})`)
         .attr("clip-path", "url(#body-clip)");
+      //  dd
     }
   };
 
