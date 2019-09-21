@@ -38,6 +38,7 @@ const stackArea = () => {
     return _chart;
   };
 
+  //
   const renderAxes = () => {
     const axesG = _svg.append("g").attr("class", "axes");
 
