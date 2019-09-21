@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import renderEmpty from "antd/lib/config-provider/renderEmpty";
 
 const stackArea = () => {
   const _chart = {};
@@ -27,15 +28,17 @@ const stackArea = () => {
         .attr("width", _width)
         .attr("height", _height);
 
-      _chart.renderAxes();
+      renderAxes();
 
-      _chart.renderBodyClip();
+      renderBodyClip();
     }
-
+    if (_data) {
+      renderBody();
+    }
     return _chart;
   };
 
-  _chart.renderAxes = () => {
+  const renderAxes = () => {
     const axesG = _svg.append("g").attr("class", "axes");
 
     const xAxis = d3.axisBottom().scale(_xScale.range([0, quadrantWidth()]));
@@ -74,7 +77,7 @@ const stackArea = () => {
     return _chart;
   };
 
-  _chart.renderBodyClip = () => {
+  const renderBodyClip = () => {
     const padding = 5;
 
     _svg
@@ -88,15 +91,69 @@ const stackArea = () => {
       .attr("height", quadrantHeight());
   };
 
-  _chart.renderBody = () => {
+  const renderBody = () => {
     if (!_bodyG) {
       _bodyG = _svg
         .append("g")
         .attr("class", "body")
         .attr("transform", `translate(${xStart()},${yEnd()})`)
         .attr("clip-path", "url(#body-clip)");
-      //  dd
     }
+
+    const stack = d3
+      .stack()
+      .keys(["value1", "value2", "value3"])
+      .offset(d3.stackOffsetNone);
+
+    var series = stack(_data);
+
+    renderLines(series);
+    renderArea(series);
+  };
+
+  const renderLines = series => {
+    _line = d3
+      .line()
+      .x((d, i) => _xScale(i))
+      .y((d, i) => _yScale(d[1]));
+
+    const linePath = _bodyG.selectAll("path.line").data(series);
+
+    linePath
+      .enter()
+      .append("path")
+      .merge(linePath)
+      .style("stroke", (d, i) => _colors(i))
+      .attr("class", "line")
+      .transition()
+      .attr("d", d => _line(d));
+  };
+
+  const renderArea = series => {
+    var area = d3
+      .area()
+      .x((d, i) => _xScale(i))
+      .y0(d => _yScale(d[0]))
+      .y1(d => _yScale(d[1]));
+
+    const areaPath = _bodyG.selectAll("path.area").data(series);
+
+    areaPath
+      .enter()
+      .append("path")
+      .merge(areaPath)
+      .style("fill", (d, i) => _colors(i))
+      .attr("class", "area")
+      .transition()
+      .attr("d", d => area(d));
+  };
+
+  _chart.update = data => {
+    if (!data) {
+      data = randomData();
+    }
+    _chart.data(data).renderTo();
+    return _chart;
   };
 
   const xStart = () => {
@@ -182,6 +239,14 @@ const stackArea = () => {
   };
 
   return _chart;
+};
+
+const randomData = () => {
+  return d3.range(51).map(i => ({
+    value1: Math.random() * 9,
+    value2: Math.random() * 9,
+    value3: Math.random() * 9
+  }));
 };
 
 export default stackArea;

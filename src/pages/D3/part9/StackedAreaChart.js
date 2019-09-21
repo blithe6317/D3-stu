@@ -5,17 +5,27 @@ import { Button } from "antd";
 import stackedArea from "./chart/stackedArea";
 
 const StackedAreaChart = () => {
+  let chart;
   useEffect(() => {
-    const chart = stackedArea();
+    chart = stackedArea();
     chart
       .xScale(d3.scaleLinear().domain([0, 50]))
       .yScale(d3.scaleLinear().domain([0, 26]))
       .renderTo("#stacked-area");
+
+    chart.update();
   }, []);
   return (
     <>
       <div id="stacked-area"></div>
-      <Button type="primary">更新</Button>
+      <Button
+        type="primary"
+        onClick={() => {
+          chart.update();
+        }}
+      >
+        更新
+      </Button>
     </>
   );
 };
