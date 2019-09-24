@@ -14,14 +14,6 @@ const TreeChart = () => {
   return (
     <>
       <div id="tree-chart"></div>
-      <Button
-        type="primary"
-        onClick={() => {
-          chart.update();
-        }}
-      >
-        更新
-      </Button>
     </>
   );
 };

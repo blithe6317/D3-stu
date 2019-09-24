@@ -5,11 +5,14 @@ import PieChart from "./PieChart";
 import StackedAreaChart from "./StackedAreaChart";
 import TreeMap from "./TreeMap";
 import TreeChart from "./TreeChart";
+import PackChart from "./PackChart";
+
+import styles from "./style.scss";
 const { TabPane } = Tabs;
 
 const Part = () => {
   return (
-    <Tabs defaultActiveKey="4">
+    <Tabs defaultActiveKey="5">
       <TabPane tab="创建饼图" key="1">
         <PieChart></PieChart>
       </TabPane>
@@ -23,7 +26,7 @@ const Part = () => {
         <TreeChart></TreeChart>
       </TabPane>
       <TabPane tab="创建封闭图" key="5">
-        创建封闭图
+        <PackChart></PackChart>
       </TabPane>
     </Tabs>
   );

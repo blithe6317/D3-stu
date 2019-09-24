@@ -1,0 +1,46 @@
+.node {
+  circle {
+    cursor: pointer;
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+  }
+
+  text {
+    font-size: 11px;
+  }
+}
+
+path.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+text {
+  font-size: 11px;
+  pointer-events: none;
+  &.parent {
+    fill: steelblue;
+  }
+  &.child {
+    display: none;
+  }
+}
+
+circle {
+  fill: #ccc;
+  stroke: #999;
+  pointer-events: all;
+  &.parent {
+    fill: steelblue;
+    fill-opacity: 0.1;
+    stroke: steelblue;
+  }
+  &.parent:hover {
+    stroke-width: 0.5px;
+  }
+  &.child {
+    pointer-events: none;
+  }
+}
