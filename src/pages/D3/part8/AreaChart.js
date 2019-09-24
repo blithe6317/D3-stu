@@ -135,7 +135,6 @@ const AreaChart = () => {
   };
 
   const renderDots = data => {
-    debugger;
     data.forEach((dots, i) => {
       svgBody
         .selectAll("circle.dot_" + i)

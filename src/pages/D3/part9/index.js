@@ -4,11 +4,12 @@ import { Tabs } from "antd";
 import PieChart from "./PieChart";
 import StackedAreaChart from "./StackedAreaChart";
 import TreeMap from "./TreeMap";
+import TreeChart from "./TreeChart";
 const { TabPane } = Tabs;
 
 const Part = () => {
   return (
-    <Tabs defaultActiveKey="3">
+    <Tabs defaultActiveKey="4">
       <TabPane tab="创建饼图" key="1">
         <PieChart></PieChart>
       </TabPane>
@@ -19,7 +20,7 @@ const Part = () => {
         <TreeMap></TreeMap>
       </TabPane>
       <TabPane tab="创建树" key="4">
-        创建树
+        <TreeChart></TreeChart>
       </TabPane>
       <TabPane tab="创建封闭图" key="5">
         创建封闭图
