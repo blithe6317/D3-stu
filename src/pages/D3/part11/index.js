@@ -5,14 +5,16 @@ import GravityAndCharge from "./GravityAndCharge";
 import Velocity from "./Velocity";
 import LinkConstraint from "./LinkConstraint";
 import ArbitraryVisualization from "./ArbitraryVisualization";
+import MultiFoci from "./MultiFoci";
+import ForceDirectedGraph from "./ForceDirectedGraph";
 
-import style from "./style.scss";
+// import style from "./style.scss";
 
 const { TabPane } = Tabs;
 
 const Part = () => {
   return (
-    <Tabs defaultActiveKey="4">
+    <Tabs defaultActiveKey="6">
       <TabPane tab="使用引力和相互作用力" key="1">
         <GravityAndCharge></GravityAndCharge>
       </TabPane>
@@ -26,10 +28,10 @@ const Part = () => {
         <ArbitraryVisualization></ArbitraryVisualization>
       </TabPane>
       <TabPane tab="操作“力”" key="5">
-        操作“力”
+        <MultiFoci></MultiFoci>
       </TabPane>
       <TabPane tab="绘制力导向图" key="6">
-        绘制力导向图
+        <ForceDirectedGraph></ForceDirectedGraph>
       </TabPane>
     </Tabs>
   );

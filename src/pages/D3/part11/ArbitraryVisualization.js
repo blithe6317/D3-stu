@@ -5,7 +5,7 @@ const ArbitraryVisualization = () => {
   const w = 1280,
     h = 800,
     r = 4.5,
-    duration = 10000,
+    duration = 100000,
     force = d3
       .forceSimulation()
       .velocityDecay(0.8)
