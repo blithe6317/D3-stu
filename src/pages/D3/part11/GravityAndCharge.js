@@ -49,7 +49,7 @@ const GravityAndCharge = () => {
         .transition()
         .delay(500)
         .transition()
-        .duration(1000)
+        .duration(10000)
         // .attr("r", 1e-6
         .style("opacity", 0)
         .on("end", () => {

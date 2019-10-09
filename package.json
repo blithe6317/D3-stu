@@ -9,6 +9,7 @@
     "d3": "^4.2.1",
     "d3-fetch": "^1.1.2",
     "mockjs": "^1.0.1-beta3",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
