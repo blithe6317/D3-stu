@@ -9,25 +9,15 @@
     z-index: 1;
     display: flex;
     box-sizing: border-box;
-    transition-timing-function: cubic-bezier(0.075, 0.82, 0.075, 1);
+    transition: all 700ms ease 0s;
     transition-property: transform;
-
     .swiper-slide {
       width: 100%;
       height: 100%;
       margin-right: 20px;
       position: relative;
-      text-align: center;
 
       display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      -webkit-align-items: center;
-      align-items: center;
       background-color: white;
 
       flex-shrink: 0;
