@@ -17,19 +17,19 @@ const Curve = () => {
   const data = [
     [
       { x: 0, y: 5 },
-      { x: 1, y: 9 },
-      { x: 2, y: 7 },
-      { x: 3, y: 5 },
-      { x: 4, y: 3 },
-      { x: 6, y: 4 },
-      { x: 7, y: 2 },
-      { x: 8, y: 3 },
+      // { x: 1, y: 9 },
+      // { x: 2, y: 7 },
+      // { x: 3, y: 5 },
+      // { x: 4, y: 5 },
+      // { x: 6, y: 4 },
+      // { x: 7, y: 2 },
+      // { x: 8, y: 3 },
       { x: 9, y: 2 }
-    ],
+    ]
 
-    d3.range(10).map(function(i) {
-      return { x: i, y: Math.sin(i) + 5 };
-    })
+    // d3.range(10).map(function(i) {
+    //   return { x: i, y: Math.sin(i) + 5 };
+    // })
   ];
 
   let svg;

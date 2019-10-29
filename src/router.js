@@ -18,6 +18,8 @@ import Part10 from "./pages/D3/part10";
 import Part11 from "./pages/D3/part11";
 import Part12 from "./pages/D3/part12";
 
+import Trailing from "./pages/D3Other/Trailing";
+
 import Swiper from "./pages/Other/Swiper/index";
 
 export const routerConfig = {
@@ -110,9 +112,15 @@ export const routerConfig = {
       ]
     },
     {
-      path: "/d3-api",
-      name: "D3Api",
-      children: []
+      path: "/d3-other",
+      name: "D3 Other",
+      children: [
+        {
+          path: "trailing",
+          name: "拖尾效果",
+          component: Trailing
+        }
+      ]
     },
     {
       path: "/rx",

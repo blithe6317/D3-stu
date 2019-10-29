@@ -76,7 +76,9 @@ const treeMapChart = () => {
       .select("rect")
       .attr("width", d => d.x1 - d.x0)
       .attr("height", d => d.y1 - d.y0)
-      .style("fill", d => _colors(d.parent.data.name));
+      .style("fill", d => {
+        return _colors(d.parent.data.name);
+      });
   };
 
   const renderText = (cellEnter, cells) => {

@@ -14,7 +14,7 @@ const { TabPane } = Tabs;
 
 const Part = () => {
   return (
-    <Tabs defaultActiveKey="8">
+    <Tabs defaultActiveKey="3">
       <TabPane tab="简单形状" key="1">
         <SimpleShape></SimpleShape>
       </TabPane>

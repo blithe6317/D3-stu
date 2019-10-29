@@ -85,12 +85,42 @@ const Swiper = props => {
   }, [props.autoplay, active, maxActive]);
 
   const moveWrapper = index => {
-    const { speed } = props;
+    const { speed, children } = props;
+    const len = children.length;
     const wraDom = wrapperRef.current;
     const { width } = wraDom.getBoundingClientRect();
     const moveW = index * (width + 20);
-    wraDom.style.transitionDuration = speed + "ms";
-    wraDom.style.transform = `translate3d(-${moveW}px,0px,0px)`;
+    const firstSlide = wraDom.getElementsByClassName("swiper-slide")[0];
+    const lastSlide = wraDom.getElementsByClassName("swiper-slide")[len - 1];
+
+    if (oldActive === len - 1 && index === 0) {
+      wraDom.style.transitionDuration = speed + "ms";
+      firstSlide.style.transform = `translate3d(${len *
+        (width + 20)}px,0px,0px)`;
+      wraDom.style.transform = `translate3d(-${len * (width + 20)}px,0px,0px)`;
+
+      wraDom.addEventListener("transitionend", end);
+    } else if (oldActive === 0 && index === len - 1) {
+      wraDom.style.transitionDuration = speed + "ms";
+      lastSlide.style.transform = `translate3d(-${len *
+        (width + 20)}px,0px,0px)`;
+      wraDom.style.transform = `translate3d(${width + 20}px,0px,0px)`;
+
+      wraDom.addEventListener("transitionend", end);
+    } else {
+      wraDom.style.transitionDuration = speed + "ms";
+      wraDom.style.transform = `translate3d(-${moveW}px,0px,0px)`;
+    }
+
+    function end() {
+      wraDom.style.transitionDuration = "0ms";
+      wraDom.style.transform = `translate3d(-${moveW}px,0px,0px)`;
+      firstSlide.style.transform = `unset`;
+      lastSlide.style.transform = `unset`;
+
+      wraDom.removeEventListener("transitionend", end);
+    }
+
     onAfterSwitch(active, oldActive);
   };
 

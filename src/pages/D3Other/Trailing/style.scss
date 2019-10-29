@@ -1,0 +1,20 @@
+.trailing {
+  background-color: #020c20;
+  .animation-path {
+    animation: test 3s linear forwards;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes test {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.path-animation {
+  circle {
+    // stroke: #fff;
+    // fill: #fff;
+    // box-shadow: 0px 0px 8px 6px rgba(255, 255, 0, 0.5);
+  }
+}
