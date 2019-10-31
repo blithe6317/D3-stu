@@ -38,17 +38,6 @@ const trailing = () => {
         .attr("class", "trailing")
         .attr("width", _width)
         .attr("height", _height);
-
-      const filter = _svg
-        .append("defs")
-        .append("filter")
-        .attr("id", "f1")
-        .attr("x", 0)
-        .attr("y", 0);
-      filter
-        .append("feGaussianBlur")
-        .attr("in", "SourceGraphic")
-        .attr("stdDeviation", 1);
     }
 
     renderAxes(_svg);
@@ -230,8 +219,9 @@ const trailing = () => {
   }
 
   const pathAnimation = path => {
-    const maxRadius = 3;
-    const circleCount = 10;
+    const maxRadius = 2;
+    const minRadius = 0.5;
+    const circleCount = 20;
     const node = path.node();
     var totalLen = node.getTotalLength();
 
@@ -243,17 +233,19 @@ const trailing = () => {
 
     var scale = d3
       .scaleLinear()
-      .range([0.5, maxRadius])
+      .range([minRadius, maxRadius])
       .domain([0, circleCount - 1]);
 
     const points = g
       .selectAll("circle")
-      .data(d3.range(10).reverse())
+      .data(d3.range(circleCount).reverse())
       .enter()
       .append("circle")
       .style("fill", "#fff")
-      .style("stroke", "#fff")
-      .attr("filter", "url(#f1)")
+      .style(
+        "stroke",
+        (_, i) => `rgba(255,255,255,${(1 / circleCount) * circleCount - i})`
+      )
       .attr("cx", d => pointData[0].x)
       .attr("cy", d => pointData[0].y)
       .attr("r", d => {
@@ -266,7 +258,7 @@ const trailing = () => {
       points
         .transition()
         .delay(function(_, i) {
-          return i * 20;
+          return i * 13;
         })
         .duration(totalLen * 5)
         .ease(d3.easeLinear)
